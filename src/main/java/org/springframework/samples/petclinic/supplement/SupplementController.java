@@ -28,8 +28,7 @@ public class SupplementController {
     static final Logger LOG = LoggerFactory.getLogger(SupplementController.class);
 
     @RequestMapping(value = "/supplements", method = RequestMethod.GET)
-    public String processFindForm(Map<String, Object> model) throws InterruptedException {
-        Thread.sleep(12000);
+    public String processFindForm(Map<String, Object> model) {
         Collection<Supplement> results = getSupplements();
         model.put("supplements", results);
 	  	LOG.info("I am fine.");
