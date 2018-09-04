@@ -37,6 +37,9 @@ public class SupplementController {
 		LOG.trace("This is the tracing feature");
 		LOG.debug("The debug feature");
 		LOG.debug(results.toString());
+		if(true){
+		    throw new RuntimeException("blah blah");
+        }
         return "supplements/supplementList";
     }
 
