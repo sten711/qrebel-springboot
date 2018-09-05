@@ -37,9 +37,11 @@ public class SupplementController {
 		LOG.trace("This is the tracing feature");
 		LOG.debug("The debug feature");
 		LOG.debug(results.toString());
-		if(true){
-		    throw new RuntimeException("blah blah");
-        }
+
+//        DEMO: Show Exception is thrown
+/*        if (true) {
+            throw new RuntimeException("KEYBOARD NOT FOUND, PRESS F1 TO CONTINUE");
+        }*/
         return "supplements/supplementList";
     }
 
@@ -69,14 +71,15 @@ public class SupplementController {
 
     private String getRemoteSupplementsJson() {
         StringBuilder sb = new StringBuilder();
+//        DEMO: Show slow request example
 /*        try {
             Thread.sleep(10000); // fake delay
         } catch (InterruptedException e) {
             e.printStackTrace();
         }*/
+
         try {
             String spec = "https://supplements.cfapps.io/";
-//            String spec = "http://" + host + ":8889/supplements/";
             System.out.println("Calling to " + spec);
 
             URL url = new URL(spec);
