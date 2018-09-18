@@ -33,15 +33,14 @@ public class SupplementController {
         model.put("supplements", results);
 	  	LOG.info("I am fine.");
 		LOG.warn("I love programming.");
-//		LOG.error(null, new Exception("some error"));
 		LOG.trace("This is the tracing feature");
 		LOG.debug("The debug feature");
 		LOG.debug(results.toString());
 
 //        DEMO: Show Exception is thrown
-        if (true) {
+/*        if (true) {
             throw new RuntimeException("KEYBOARD NOT FOUND, PRESS F1 TO CONTINUE");
-        }
+        }*/
         return "supplements/supplementList";
     }
 
@@ -79,7 +78,7 @@ public class SupplementController {
         }*/
 
         try {
-            String spec = "https://supplements.cfapps.io/";
+            String spec = "http://localhost:30001/supplements/";
             System.out.println("Calling to " + spec);
 
             URL url = new URL(spec);
