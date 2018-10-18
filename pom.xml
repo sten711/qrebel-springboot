@@ -37,6 +37,8 @@
       <qrebelAppName>${appName}</qrebelAppName>
       <!--suppress UnresolvedMavenProperty -->
       <qrebelAppBuild>${appBuild}</qrebelAppBuild>
+      <!--suppress UnresolvedMavenProperty -->
+      <qrebelAppVersion>${appVersion}</qrebelAppVersion>
   </properties>
 
   <dependencies>
@@ -223,7 +225,7 @@
                 <configuration>
                     <skip>${skipITs}</skip>
                     <agent>${qrebelAgentPath}</agent>
-                    <jvmArguments>-Dqrebel.app.name=${qrebelAppName} -Dqrebel.app.build=${qrebelAppBuild}</jvmArguments>
+                    <jvmArguments>-Dqrebel.app.name=${qrebelAppName} -Dqrebel.app.build=${qrebelAppBuild} -Dqrebel.app.version=${qrebelAppVersion}</jvmArguments>
                 </configuration>
             </execution>
             <execution>
