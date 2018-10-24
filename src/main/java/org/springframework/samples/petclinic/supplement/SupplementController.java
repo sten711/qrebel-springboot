@@ -36,7 +36,7 @@ public class SupplementController {
     }
 
     private Collection<Supplement> getSupplements() {
-        String json = getLocalSupplementsJSon();
+        String json = getRemoteSupplementsJson();
 
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -57,6 +57,28 @@ public class SupplementController {
                 "{\"name\": \"Vitamin D\", \"price\": \"456.9\"}," +
                 "{\"name\": \"Vitamin E\", \"price\": \"987.9\"}" +
             "]";
+    }
+
+    private String getRemoteSupplementsJson() {
+        StringBuilder sb = new StringBuilder();
+
+        try {
+            String spec = "http://supplements-service:8080/supplements/";
+            System.out.println("Calling to " + spec);
+
+            URL url = new URL(spec);
+            URLConnection urlConnection = url.openConnection();
+            InputStream inputStream = urlConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while((line = bufferedReader.readLine()) != null) {
+                sb.append(line);
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
     }
 
 }
