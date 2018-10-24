@@ -31,21 +31,12 @@ public class SupplementController {
     public String processFindForm(Map<String, Object> model) {
         Collection<Supplement> results = getSupplements();
         model.put("supplements", results);
-	  	LOG.info("I am fine.");
-		LOG.warn("I love programming.");
-		LOG.trace("This is the tracing feature");
-		LOG.debug("The debug feature");
-		LOG.debug(results.toString());
 
-//        DEMO: Show Exception is thrown
-/*        if (true) {
-            throw new RuntimeException("KEYBOARD NOT FOUND, PRESS F1 TO CONTINUE");
-        }*/
         return "supplements/supplementList";
     }
 
     private Collection<Supplement> getSupplements() {
-        String json = getRemoteSupplementsJson();
+        String json = getLocalSupplementsJSon();
 
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -68,31 +59,4 @@ public class SupplementController {
             "]";
     }
 
-    private String getRemoteSupplementsJson() {
-        StringBuilder sb = new StringBuilder();
-//        DEMO: Show slow request example
-/*        try {
-            Thread.sleep(10000); // fake delay
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
-
-        try {
-            String spec = "http://supplements-service:8080/supplements/";
-            System.out.println("Calling to " + spec);
-
-            URL url = new URL(spec);
-            URLConnection urlConnection = url.openConnection();
-            InputStream inputStream = urlConnection.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-            while((line = bufferedReader.readLine()) != null) {
-                sb.append(line);
-            }
-            bufferedReader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return sb.toString();
-    }
 }
